@@ -6,8 +6,26 @@ $('.gh-header-title').prepend($element);
 $element.on('click', () => {
   let generator = new LinkGenerator();
   let clipboard = new Clipboard();
+  let button = new ProcessButton($element);
   clipboard.copy(generator.generate());
+  button.success();
 });
+
+class ProcessButton{
+  constructor($button){
+    this.$button = $button;
+  }
+  success(){
+    this.$button.addClass('btn-primary').removeClass('btn-default');
+    this.schedule(this.pristine,1000);
+  }
+  pristine(){
+    this.$button.addClass('btn-default').removeClass('btn-primary');
+  } 
+  schedule(fn,ms){
+    setTimeout(fn.bind(this), ms);
+  }
+}
 
 class LinkGenerator{
   generate(){
