@@ -27,6 +27,7 @@
         "https://*/*"
       ],
       "js": [
+        "scripts/jquery.js",
         "scripts/contentscript.js"
       ],
       "run_at": "document_end",

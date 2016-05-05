@@ -89,7 +89,12 @@ gulp.task('babel', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('watch', ['lint', 'babel', 'html'], () => {
+gulp.task('js', [], () => {
+  return gulp.src('node_modules/jquery/dist/jquery.js')
+    .pipe(gulp.dest('app/scripts'));
+});
+
+gulp.task('watch', ['lint', 'babel', 'html', 'js'], () => {
   $.livereload.listen();
 
   gulp.watch([
@@ -126,7 +131,7 @@ gulp.task('package', function () {
 gulp.task('build', (cb) => {
   runSequence(
     'lint', 'babel', 'chromeManifest',
-    ['html', 'images', 'extras'],
+    ['html', 'images', 'js', 'extras'],
     'size', cb);
 });
 
