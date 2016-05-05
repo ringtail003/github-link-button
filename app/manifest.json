@@ -23,8 +23,8 @@
   "content_scripts": [
     {
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "https://github.com/*/issues/*",
+        "https://github.com/*/pull/*"
       ],
       "js": [
         "scripts/jquery.js",
